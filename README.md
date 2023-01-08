@@ -45,6 +45,8 @@ for that method are scaled by both the value of the global flag
 and the value of the per-method flag.
 ```
 
+### Tiered Compilation Phases
+
 ![TIERED_COMPILATION](tiered-compilation.png)
 
 ### Tier3InvocationThreshold
