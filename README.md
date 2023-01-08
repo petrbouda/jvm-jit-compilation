@@ -57,12 +57,12 @@ java -XX:+UnlockDiagnosticVMOptions -XX:+PrintFlagsFinal -version | grep Tier3In
 ```
 
 ```
-java -XX:+PrintCompilation -XX:+BackgroundCompilation bin/Tier3InvocationThreshold.java 200 | grep Tier3InvocationThreshold
-java -XX:+PrintCompilation -XX:+BackgroundCompilation bin/Tier3InvocationThreshold.java 255 | grep Tier3InvocationThreshold
-java -XX:+PrintCompilation -XX:+BackgroundCompilation bin/Tier3InvocationThreshold.java 256 | grep Tier3InvocationThreshold
+java -XX:+PrintCompilation -XX:+BackgroundCompilation src/Tier3InvocationThreshold.java 200 | grep Tier3InvocationThreshold
+java -XX:+PrintCompilation -XX:+BackgroundCompilation src/Tier3InvocationThreshold.java 255 | grep Tier3InvocationThreshold
+java -XX:+PrintCompilation -XX:+BackgroundCompilation src/Tier3InvocationThreshold.java 256 | grep Tier3InvocationThreshold
     457 1214       3       Tier3InvocationThreshold::invoke (6 bytes)
-java -XX:+PrintCompilation -XX:+BackgroundCompilation -XX:Tier3InvocationThreshold=1000  bin/Tier3InvocationThreshold.java 1023 | grep Tier3InvocationThreshold
-java -XX:+PrintCompilation -XX:+BackgroundCompilation -XX:Tier3InvocationThreshold=1000  bin/Tier3InvocationThreshold.java 1024 | grep Tier3InvocationThreshold 
+java -XX:+PrintCompilation -XX:+BackgroundCompilation -XX:Tier3InvocationThreshold=1000  src/Tier3InvocationThreshold.java 1023 | grep Tier3InvocationThreshold
+java -XX:+PrintCompilation -XX:+BackgroundCompilation -XX:Tier3InvocationThreshold=1000  src/Tier3InvocationThreshold.java 1024 | grep Tier3InvocationThreshold 
     521  900       3       Tier3InvocationThreshold::invoke (6 bytes)
 ```
 
@@ -76,8 +76,8 @@ java -XX:+UnlockDiagnosticVMOptions -XX:+PrintFlagsFinal -version | grep Tier3Ba
 ```
 
 ```
-java -XX:+PrintCompilation -XX:+BackgroundCompilation bin/Tier3BackEdgeThreshold.java 60415 | grep Tier3BackEdgeThreshold
-java -XX:+PrintCompilation -XX:+BackgroundCompilation bin/Tier3BackEdgeThreshold.java 60416 | grep Tier3BackEdgeThreshold
+java -XX:+PrintCompilation -XX:+BackgroundCompilation src/Tier3BackEdgeThreshold.java 60415 | grep Tier3BackEdgeThreshold
+java -XX:+PrintCompilation -XX:+BackgroundCompilation src/Tier3BackEdgeThreshold.java 60416 | grep Tier3BackEdgeThreshold
     461 1240 %     3       Tier3BackEdgeThreshold::invoke @ 5 (25 bytes)
 ```
 
@@ -104,9 +104,9 @@ invocationCount > Tier3MinInvocationThreshold && invocationCount + backEdgeCount
 ```
 
 ```
-java -XX:+PrintCompilation -XX:+BackgroundCompilation bin/Tier3CompileThreshold.java 100 | grep Tier3CompileThreshold                                                      [23/01/8| 6:04PM]
-java -XX:+PrintCompilation -XX:+BackgroundCompilation bin/Tier3CompileThreshold.java 101 | grep Tier3CompileThreshold                                                      [23/01/8| 6:28PM]
-java -XX:+PrintCompilation -XX:+BackgroundCompilation bin/Tier3CompileThreshold.java 102 | grep Tier3CompileThreshold                                                      [23/01/8| 6:28PM]
-java -XX:+PrintCompilation -XX:+BackgroundCompilation bin/Tier3CompileThreshold.java 103 | grep Tier3CompileThreshold                                                      [23/01/8| 6:28PM]
+java -XX:+PrintCompilation -XX:+BackgroundCompilation src/Tier3CompileThreshold.java 100 | grep Tier3CompileThreshold                                                      [23/01/8| 6:04PM]
+java -XX:+PrintCompilation -XX:+BackgroundCompilation src/Tier3CompileThreshold.java 101 | grep Tier3CompileThreshold                                                      [23/01/8| 6:28PM]
+java -XX:+PrintCompilation -XX:+BackgroundCompilation src/Tier3CompileThreshold.java 102 | grep Tier3CompileThreshold                                                      [23/01/8| 6:28PM]
+java -XX:+PrintCompilation -XX:+BackgroundCompilation src/Tier3CompileThreshold.java 103 | grep Tier3CompileThreshold                                                      [23/01/8| 6:28PM]
     471 1220       3       Tier3CompileThreshold::invoke (26 bytes)
 ```
