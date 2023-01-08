@@ -66,7 +66,7 @@ java -XX:+PrintCompilation -XX:+BackgroundCompilation -XX:Tier3InvocationThresho
     521  900       3       Tier3InvocationThreshold::invoke (6 bytes)
 ```
 
-- **it needs to be a power of two**
+- Does it need to be a power of two??
 
 ### Tier3BackEdgeThreshold
 
