@@ -7,6 +7,8 @@
 - https://stackoverflow.com/questions/71318011/how-is-the-count-of-method-executions-that-triggers-the-omitted-exception-stack/71375155#71375155
 - https://stackoverflow.com/questions/60851417/jit-recompiles-to-do-fast-throw-after-more-iterations-if-stacktrace-is-of-even-l/60878577#60878577
 
+- http://hg.openjdk.java.net/jdk8u/jdk8u/hotspot/file/2b2511bd3cc8/src/share/vm/runtime/advancedThresholdPolicy.hpp#l34
+
 ### Thresholds
 
 ```
