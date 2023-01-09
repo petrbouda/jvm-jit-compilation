@@ -5,6 +5,7 @@
 
 - https://stackoverflow.com/questions/35601841/how-does-the-jvm-decided-to-jit-compile-a-method-categorize-a-method-as-hot/35614237#35614237
 - https://stackoverflow.com/questions/71318011/how-is-the-count-of-method-executions-that-triggers-the-omitted-exception-stack/71375155#71375155
+  (explains `Tier0BackedgeNotifyFreqLog`, `Tier3BackedgeNotifyFreqLog` - the reason why the invocation/backedge counters are not precise)
 - https://stackoverflow.com/questions/60851417/jit-recompiles-to-do-fast-throw-after-more-iterations-if-stacktrace-is-of-even-l/60878577#60878577
 
 - http://hg.openjdk.java.net/jdk8u/jdk8u/hotspot/file/2b2511bd3cc8/src/share/vm/runtime/advancedThresholdPolicy.hpp#l34
@@ -12,20 +13,39 @@
 ### Thresholds
 
 ```
-java -XX:+UnlockDiagnosticVMOptions -XX:+PrintFlagsFinal -version | grep -e Threshold
-     intx CompileThreshold                         = 10000                                  {pd product} {default}
-   double CompileThresholdScaling                  = 1.000000                                  {product} {default}
+java -XX:+UnlockDiagnosticVMOptions -XX:+PrintFlagsFinal -version | grep -e Tier
     uintx IncreaseFirstTierCompileThresholdAt      = 50                                        {product} {default}
+     bool PrintTieredEvents                        = false                                     {product} {default}
+     intx Tier0BackedgeNotifyFreqLog               = 10                                        {product} {default}
+     intx Tier0Delay                               = 20                                     {diagnostic} {default}
+     intx Tier0InvokeNotifyFreqLog                 = 7                                         {product} {default}
+     intx Tier0ProfilingStartPercentage            = 200                                       {product} {default}
+     intx Tier23InlineeNotifyFreqLog               = 20                                        {product} {default}
      intx Tier2BackEdgeThreshold                   = 0                                         {product} {default}
+     intx Tier2BackedgeNotifyFreqLog               = 14                                        {product} {default}
      intx Tier2CompileThreshold                    = 0                                         {product} {default}
+     intx Tier2InvokeNotifyFreqLog                 = 11                                        {product} {default}
      intx Tier3BackEdgeThreshold                   = 60000                                     {product} {default}
+     intx Tier3BackedgeNotifyFreqLog               = 13                                        {product} {default}
      intx Tier3CompileThreshold                    = 2000                                      {product} {default}
+     intx Tier3DelayOff                            = 2                                         {product} {default}
+     intx Tier3DelayOn                             = 5                                         {product} {default}
      intx Tier3InvocationThreshold                 = 200                                       {product} {default}
+     intx Tier3InvokeNotifyFreqLog                 = 10                                        {product} {default}
+     intx Tier3LoadFeedback                        = 5                                         {product} {default}
      intx Tier3MinInvocationThreshold              = 100                                       {product} {default}
      intx Tier4BackEdgeThreshold                   = 40000                                     {product} {default}
      intx Tier4CompileThreshold                    = 15000                                     {product} {default}
      intx Tier4InvocationThreshold                 = 5000                                      {product} {default}
+     intx Tier4LoadFeedback                        = 3                                         {product} {default}
      intx Tier4MinInvocationThreshold              = 600                                       {product} {default}
+     bool TieredCompilation                        = true                                   {pd product} {default}
+     intx TieredCompileTaskTimeout                 = 50                                        {product} {default}
+     intx TieredOldPercentage                      = 1000                                   {diagnostic} {default}
+     intx TieredRateUpdateMaxTime                  = 25                                        {product} {default}
+     intx TieredRateUpdateMinTime                  = 1                                         {product} {default}
+     intx TieredStopAtLevel                        = 4                                         {product} {default}
+
 ```
 
 - **CompileThreshold** does make sense if **TieredCompilation** is disabled (Server JIT)
@@ -72,7 +92,7 @@ java -XX:+PrintCompilation -XX:+BackgroundCompilation -XX:Tier3InvocationThresho
     521  900       3       Tier3InvocationThreshold::invoke (6 bytes)
 ```
 
-- Does it need to be a power of two??
+- Does it need to be a power of two?? -> `Tier0BackedgeNotifyFreqLog` 2^Tier0BackedgeNotifyFreqLog = 2^10 = 1024
 
 ### Tier3BackEdgeThreshold
 
