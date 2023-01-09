@@ -3,6 +3,10 @@
 - https://www.lmax.com/blog/staff-blogs/2016/03/05/observing-jvm-warm-effects/
 - https://www.slideshare.net/dougqh/jvm-mechanics-when-does-the
 
+- https://stackoverflow.com/questions/35601841/how-does-the-jvm-decided-to-jit-compile-a-method-categorize-a-method-as-hot/35614237#35614237
+- https://stackoverflow.com/questions/71318011/how-is-the-count-of-method-executions-that-triggers-the-omitted-exception-stack/71375155#71375155
+- https://stackoverflow.com/questions/60851417/jit-recompiles-to-do-fast-throw-after-more-iterations-if-stacktrace-is-of-even-l/60878577#60878577
+
 ### Thresholds
 
 ```
